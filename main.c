@@ -12,29 +12,31 @@
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 
-
-
 int player_left, player_right;
-
 int Game  = 0;
 
-int random(){
+int random()
+{
     return rand() % (N-PLAYER-2);
 }
 
-void game_over(){
+void game_over()
+{
     system("Cls");
     printf("\n\n\nGame over!");
     Sleep(1500);
     Game = 1;
 }
 
-void bar(int field[M][N]){
+void bar(int field[M][N])
+{
     int left = random(), right = random();
-    while(N - 2 - (left + right) < 10){
+    while(N - 2 - (left + right) < 10)
+    {
         right = random();
     }
-    for (int i = 0; i < N; i++){
+    for (int i = 0; i < N; i++)
+    {
         if (i < left || i > N-right)
             field[1][i] = 2;   
     }
@@ -89,31 +91,30 @@ void play_round(int field[M][N])
     c2 = c2%(M-2);
 }
 
-
-
-
 void move(int field[M][N])
 {   
     int c = 0;
     if(_kbhit()){
-        switch((c = _getch())) {
-
-        case KEY_LEFT:
-            if(player_left > 1){
-                field[M-2][player_right] = 0;
-                player_left--;
-                player_right--;
-                field[M-2][player_left] = 1;
-            }
-            break;
-        case KEY_RIGHT:
-            if(player_right < N-2){
-                field[M-2][player_left] = 0;
-                player_left++;
-                player_right++;
-                field[M-2][player_right] = 1;
-            }
-            break;
+        switch((c = _getch())) 
+        {
+            case KEY_LEFT:
+                if(player_left > 1)
+                {
+                    field[M-2][player_right] = 0;
+                    player_left--;
+                    player_right--;
+                    field[M-2][player_left] = 1;
+                }
+                break;
+            case KEY_RIGHT:
+                if(player_right < N-2)
+                {
+                    field[M-2][player_left] = 0;
+                    player_left++;
+                    player_right++;
+                    field[M-2][player_right] = 1;
+                }
+                break;
         }
     }
 }
@@ -173,7 +174,8 @@ int main()
     int counter = 100;
     while(Game == 0)
     {
-        if(!counter){
+        if(!counter)
+        {
             play_round(field);
             print(field);
             restart_screen();
