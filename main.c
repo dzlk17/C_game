@@ -5,7 +5,6 @@
 #include <time.h>
 #include <winuser.h>
 
-
 #define M 30
 #define N 40 
 #define PLAYER 8
